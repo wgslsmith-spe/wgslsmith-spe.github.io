@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="../generator/index.html" class="active"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="../reconditioner/index.html"><strong aria-hidden="true">4.</strong> Reconditioner</a></li><li class="chapter-item expanded "><a href="../harness/index.html"><strong aria-hidden="true">5.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../harness/usage.html"><strong aria-hidden="true">5.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="../harness/configurations.html"><strong aria-hidden="true">5.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="../harness/exit-codes.html"><strong aria-hidden="true">5.3.</strong> Exit codes</a></li><li class="chapter-item expanded "><a href="../harness/remote-execution.html"><strong aria-hidden="true">5.4.</strong> Remote execution</a></li></ol></li><li class="chapter-item expanded "><a href="../reducer/index.html"><strong aria-hidden="true">6.</strong> Reducer</a></li><li class="chapter-item expanded "><a href="../validator/index.html"><strong aria-hidden="true">7.</strong> Validation Server</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="../generator/index.html" class="active"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="../spe.html"><strong aria-hidden="true">4.</strong> SPE</a></li><li class="chapter-item expanded "><a href="../fuse.html"><strong aria-hidden="true">5.</strong> Fuser</a></li><li class="chapter-item expanded "><a href="../reconditioner/index.html"><strong aria-hidden="true">6.</strong> Reconditioner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reconditioner/concretizer.html"><strong aria-hidden="true">6.1.</strong> Concretizer</a></li></ol></li><li class="chapter-item expanded "><a href="../harness/index.html"><strong aria-hidden="true">7.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../harness/usage.html"><strong aria-hidden="true">7.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="../harness/configurations.html"><strong aria-hidden="true">7.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="../harness/execution-result.html"><strong aria-hidden="true">7.3.</strong> Execution result</a></li><li class="chapter-item expanded "><a href="../harness/remote-execution.html"><strong aria-hidden="true">7.4.</strong> Remote execution</a></li><li class="chapter-item expanded "><a href="../harness/daemon.html"><strong aria-hidden="true">7.5.</strong> Daemon mode</a></li></ol></li><li class="chapter-item expanded "><a href="../reducer/index.html"><strong aria-hidden="true">8.</strong> Reducer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reducer/auto-reduce.html"><strong aria-hidden="true">8.1.</strong> Auto-reduce</a></li></ol></li><li class="chapter-item expanded "><a href="../validator/index.html"><strong aria-hidden="true">9.</strong> Validation Server</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -181,25 +181,30 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="generator"><a class="header" href="#generator">Generator</a></h1>
+<ul>
+<li><a href="#stage">Stage</a></li>
+<li><a href="#wgsl-extensions">WGSL extensions</a></li>
+<li><a href="#floating-point-builtins-for-crash-testing">Floating-point builtins for crash testing</a></li>
+<li><a href="#context-aware-generation">Context-aware generation</a></li>
+<li><a href="#pointers">Pointers</a></li>
+</ul>
 <p>The program generator is able to randomly generate WGSL programs using a range of language features.</p>
-<pre><code class="language-sh"># Generate a shader
-$ wgslsmith gen
-# Show help text
-$ wgslsmith gen --help
+<pre><code class="language-sh">./wgslsmith gen # Generate a shader
+./wgslsmith gen --help # Show help text
 </code></pre>
 <p>Note that programs produced by the generator may not always compile (despite being syntactically valid and well-typed). This is because some WGSL compilers implement additional validation such as rejecting obvious infinite loops. wgslsmith uses a technique called reconditioning (see <a href="../reconditioner/index.html">here</a>) to guarantee validity. You can recondition shaders by passing <code>--recondition</code> to the generator, or by invoking the reconditioner separately on the generated shader which allows more control over its behaviour.</p>
 <p>The generator has various options to control the generation process. See the help text for a full list.</p>
-<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
-<div class="admonition-title">
-<div id="admonition-note-title">
-<p>Note</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-note"></a>
-</div>
-<div>
-<p>The options to control the sizes of functions and statement blocks are currently a rough approximation due to how the generator works. This may be fixed in future.</p>
-</div>
-</div>
+<h2 id="stage"><a class="header" href="#stage">Stage</a></h2>
+<p>By default, the generator outputs compute shaders. Use the <code>--stage</code> option to get vertex or fragment shaders. This of course affects the entrypoint (its return type), but also importantly the builtins that the generator can produce. For example, derivative functions such as <code>dpdx</code> can only be called from fragment shaders.</p>
+<h2 id="wgsl-extensions"><a class="header" href="#wgsl-extensions">WGSL extensions</a></h2>
+<p>Some features of WGSL are hidden behind extensions. The generator currently supports the <code>f16</code> and <code>subgroups</code> extensions.</p>
+<p>By default, the generator uses no extensions, because their availability depends on the device you are testing. You can enable them using the <code>--gen-ext</code> option, for example <code>--gen-ext subgroups</code>.</p>
+<h2 id="floating-point-builtins-for-crash-testing"><a class="header" href="#floating-point-builtins-for-crash-testing">Floating-point builtins for crash testing</a></h2>
+<p>By default, the generator is quite conservative and avoids generating builtins that are likely to produce floating-point errors. This is to ensure that you don't get flooded with false positives when doing differential testing.</p>
+<p>For crash testing, you may allow the generation of these builtins using <code>--unstable-float</code>. The output still needs reconditioning to avoid dynamic errors and concretisation to avoid validation errors. You can also pass <code>--unstable-float</code> to <a href="../reconditioner/index.html">reconditioner</a> to get lighter reconditioning for crash testing.</p>
+<h2 id="context-aware-generation"><a class="header" href="#context-aware-generation">Context-aware generation</a></h2>
+<p>You can seed the generator with symbols (e.g. global variables, functions, structs) of an existing test case using the <code>--context</code> option. The generator will still generate its own symbols if this option is passed. It may be helpful to use this option with test cases from tint/naga test suites, as the generator may not produce some types of symbols, like nested arrays.</p>
+<h2 id="pointers"><a class="header" href="#pointers">Pointers</a></h2>
 <p>Pointers are currently supported as an opt-in feature (since the reconditioner may reject some shaders with invalid pointer operations). To enable them, use the <code>--enable-pointers</code> flag. If reconditioning (with <code>--recondition</code>), you can also pass <code>--skip-pointer-checks</code> to stop it from erroring if the program contains possible invalid pointer operations.</p>
 
                     </main>
@@ -210,7 +215,7 @@ $ wgslsmith gen --help
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../reconditioner/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../spe.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -224,7 +229,7 @@ $ wgslsmith gen --help
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../reconditioner/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../spe.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

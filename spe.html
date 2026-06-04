@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found - wgslsmith-spe</title>
-        <base href="/">
+        <title>SPE - wgslsmith-spe</title>
 
 
         <!-- Custom HTML head -->
@@ -90,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="spe.html"><strong aria-hidden="true">4.</strong> SPE</a></li><li class="chapter-item expanded "><a href="fuse.html"><strong aria-hidden="true">5.</strong> Fuser</a></li><li class="chapter-item expanded "><a href="reconditioner/index.html"><strong aria-hidden="true">6.</strong> Reconditioner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="reconditioner/concretizer.html"><strong aria-hidden="true">6.1.</strong> Concretizer</a></li></ol></li><li class="chapter-item expanded "><a href="harness/index.html"><strong aria-hidden="true">7.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="harness/usage.html"><strong aria-hidden="true">7.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="harness/configurations.html"><strong aria-hidden="true">7.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="harness/execution-result.html"><strong aria-hidden="true">7.3.</strong> Execution result</a></li><li class="chapter-item expanded "><a href="harness/remote-execution.html"><strong aria-hidden="true">7.4.</strong> Remote execution</a></li><li class="chapter-item expanded "><a href="harness/daemon.html"><strong aria-hidden="true">7.5.</strong> Daemon mode</a></li></ol></li><li class="chapter-item expanded "><a href="reducer/index.html"><strong aria-hidden="true">8.</strong> Reducer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="reducer/auto-reduce.html"><strong aria-hidden="true">8.1.</strong> Auto-reduce</a></li></ol></li><li class="chapter-item expanded "><a href="validator/index.html"><strong aria-hidden="true">9.</strong> Validation Server</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="spe.html" class="active"><strong aria-hidden="true">4.</strong> SPE</a></li><li class="chapter-item expanded "><a href="fuse.html"><strong aria-hidden="true">5.</strong> Fuser</a></li><li class="chapter-item expanded "><a href="reconditioner/index.html"><strong aria-hidden="true">6.</strong> Reconditioner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="reconditioner/concretizer.html"><strong aria-hidden="true">6.1.</strong> Concretizer</a></li></ol></li><li class="chapter-item expanded "><a href="harness/index.html"><strong aria-hidden="true">7.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="harness/usage.html"><strong aria-hidden="true">7.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="harness/configurations.html"><strong aria-hidden="true">7.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="harness/execution-result.html"><strong aria-hidden="true">7.3.</strong> Execution result</a></li><li class="chapter-item expanded "><a href="harness/remote-execution.html"><strong aria-hidden="true">7.4.</strong> Remote execution</a></li><li class="chapter-item expanded "><a href="harness/daemon.html"><strong aria-hidden="true">7.5.</strong> Daemon mode</a></li></ol></li><li class="chapter-item expanded "><a href="reducer/index.html"><strong aria-hidden="true">8.</strong> Reducer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="reducer/auto-reduce.html"><strong aria-hidden="true">8.1.</strong> Auto-reduce</a></li></ol></li><li class="chapter-item expanded "><a href="validator/index.html"><strong aria-hidden="true">9.</strong> Validation Server</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -152,6 +151,9 @@
                         <a href="https://github.com/mandryskowski/wgslsmith" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
+                        <a href="https://github.com/mandryskowski/wgslsmith/edit/main/docs/src/spe.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
 
                     </div>
                 </div>
@@ -178,14 +180,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="skeletal-program-enumeration-spe"><a class="header" href="#skeletal-program-enumeration-spe">Skeletal Program Enumeration (SPE)</a></h1>
+<p>Skeletal Program Enumeration (SPE) is a fuzzing technique that takes a skeleton shader and enumerates valid variable assignments for specific "holes" within it.</p>
+<pre><code class="language-sh">./wgslsmith spe --help
+</code></pre>
+<p>The <code>spe</code> command has three main subcommands:</p>
+<ul>
+<li><code>process-dir &lt;DIR&gt;</code>: Scans a directory for WGSL shaders, treating each as a skeleton. It automatically enumerates variants and tests them against the configured WebGPU implementations.</li>
+<li><code>enumerate &lt;SHADER&gt;</code>: Generates and prints (or executes) all valid enumerations for a single WGSL shader. Useful for testing a single skeleton.</li>
+<li><code>fuse &lt;DIR&gt;</code>: Iterates over a directory of shaders, fusing them together (using the <a href="../fuse.html">fuser</a>) to create larger, more complex skeletons, and then tests their permutations.</li>
+</ul>
+<p>When running <code>process-dir</code> or <code>fuse</code>, <code>wgslsmith</code> will execute the enumerated shaders and automatically save any crashes or mismatches it finds, similar to the standard <code>fuzz</code> command. You can disable this using <code>--no-file-log</code>. If you wish to re-use an existing directory, use <code>--append-dir</code>.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="generator/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
+                            <a rel="next prefetch" href="fuse.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -193,7 +210,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="generator/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
+                    <a rel="next prefetch" href="fuse.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Exit codes - wgslsmith-spe</title>
+        <title>Daemon mode - wgslsmith-spe</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="../generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="../reconditioner/index.html"><strong aria-hidden="true">4.</strong> Reconditioner</a></li><li class="chapter-item expanded "><a href="../harness/index.html"><strong aria-hidden="true">5.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../harness/usage.html"><strong aria-hidden="true">5.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="../harness/configurations.html"><strong aria-hidden="true">5.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="../harness/exit-codes.html" class="active"><strong aria-hidden="true">5.3.</strong> Exit codes</a></li><li class="chapter-item expanded "><a href="../harness/remote-execution.html"><strong aria-hidden="true">5.4.</strong> Remote execution</a></li></ol></li><li class="chapter-item expanded "><a href="../reducer/index.html"><strong aria-hidden="true">6.</strong> Reducer</a></li><li class="chapter-item expanded "><a href="../validator/index.html"><strong aria-hidden="true">7.</strong> Validation Server</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="../generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="../spe.html"><strong aria-hidden="true">4.</strong> SPE</a></li><li class="chapter-item expanded "><a href="../fuse.html"><strong aria-hidden="true">5.</strong> Fuser</a></li><li class="chapter-item expanded "><a href="../reconditioner/index.html"><strong aria-hidden="true">6.</strong> Reconditioner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reconditioner/concretizer.html"><strong aria-hidden="true">6.1.</strong> Concretizer</a></li></ol></li><li class="chapter-item expanded "><a href="../harness/index.html"><strong aria-hidden="true">7.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../harness/usage.html"><strong aria-hidden="true">7.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="../harness/configurations.html"><strong aria-hidden="true">7.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="../harness/execution-result.html"><strong aria-hidden="true">7.3.</strong> Execution result</a></li><li class="chapter-item expanded "><a href="../harness/remote-execution.html"><strong aria-hidden="true">7.4.</strong> Remote execution</a></li><li class="chapter-item expanded "><a href="../harness/daemon.html" class="active"><strong aria-hidden="true">7.5.</strong> Daemon mode</a></li></ol></li><li class="chapter-item expanded "><a href="../reducer/index.html"><strong aria-hidden="true">8.</strong> Reducer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reducer/auto-reduce.html"><strong aria-hidden="true">8.1.</strong> Auto-reduce</a></li></ol></li><li class="chapter-item expanded "><a href="../validator/index.html"><strong aria-hidden="true">9.</strong> Validation Server</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -151,7 +151,7 @@
                         <a href="https://github.com/mandryskowski/wgslsmith" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/mandryskowski/wgslsmith/edit/main/docs/src/harness/exit-codes.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/mandryskowski/wgslsmith/edit/main/docs/src/harness/daemon.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -180,25 +180,31 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="exit-codes"><a class="header" href="#exit-codes">Exit codes</a></h1>
-<p>Test case reduction tools such as <a href="https://embed.cs.utah.edu/creduce/">c-reduce</a> typically take an <em>interestingness</em> test as input, which returns <code>0</code> for a useful test case or <code>1</code> if the test case should be discarded.</p>
-<p>The harness can produce two types of errors:</p>
-<ul>
-<li>If the actual shader execution failed, this will manifest as a panic with exit code <code>101</code>.</li>
-<li>If the shader was successfully executed for all configurations but the outputs differ, the program will exit with code <code>1</code>.</li>
-</ul>
-<p>Otherwise, the program exits normally with code <code>0</code>.</p>
-<p>Normally when using this with a reduction tool to find miscompilations, you will want to discard the shader if the harness returns <code>0</code> or <code>101</code>, since execution failure means that the reduction process probably produced an invalid program. Only the exits with <code>1</code> are likely to be interesting.</p>
+                        <h1 id="daemon-mode"><a class="header" href="#daemon-mode">Daemon Mode</a></h1>
+<p>On Windows, initializing WebGPU implementations (like Dawn or wgpu) can take a significant amount of time, sometimes adding seconds of overhead to every execution. This drastically slows down fuzzing and reduction.</p>
+<p>To avoid this overhead, the harness can be run in <em>daemon mode</em>. The daemon persists the WebGPU instance and device state in the background and accepts execution requests over TCP.</p>
+<h2 id="using-the-daemon"><a class="header" href="#using-the-daemon">Using the Daemon</a></h2>
+<p>To route execution requests to the daemon, simply pass the <code>--use-daemon</code> flag to the <code>run</code>, <code>fuzz</code>, <code>reduce</code>, or <code>spe</code> commands.</p>
+<pre><code class="language-sh">./wgslsmith run shader.wgsl --use-daemon
+</code></pre>
+<p>If the daemon is not already running, <code>wgslsmith</code> will automatically spawn it invisibly in the background. The daemon will automatically shut down after a period of inactivity (default 5 minutes).</p>
+<p>If the compilation times out, the daemon aborts, and will start again when the next shader runs.</p>
+<p>The daemon logs its stdout and stderr to the tmp directory. It might be worth reviewing these logs periodically to look for anything interesting. Useful commands here are <code>grep</code> to look for specific messages or <code>tail</code> to see the messages that the daemon produced before dying.</p>
+<h2 id="manual-management"><a class="header" href="#manual-management">Manual Management</a></h2>
+<p>You can also start the daemon manually if you want to observe its logs:</p>
+<pre><code class="language-sh">./wgslsmith harness daemon
+</code></pre>
+<p>By default, the daemon listens on <code>127.0.0.1:9000</code>. You can override the port being used with the <code>--daemon-port</code> argument when invoking the client commands.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../harness/configurations.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../harness/remote-execution.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../harness/remote-execution.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../reducer/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -208,11 +214,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../harness/configurations.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../harness/remote-execution.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../harness/remote-execution.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../reducer/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

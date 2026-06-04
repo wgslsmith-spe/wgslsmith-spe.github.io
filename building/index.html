@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building/index.html" class="active"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="../generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="../reconditioner/index.html"><strong aria-hidden="true">4.</strong> Reconditioner</a></li><li class="chapter-item expanded "><a href="../harness/index.html"><strong aria-hidden="true">5.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../harness/usage.html"><strong aria-hidden="true">5.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="../harness/configurations.html"><strong aria-hidden="true">5.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="../harness/exit-codes.html"><strong aria-hidden="true">5.3.</strong> Exit codes</a></li><li class="chapter-item expanded "><a href="../harness/remote-execution.html"><strong aria-hidden="true">5.4.</strong> Remote execution</a></li></ol></li><li class="chapter-item expanded "><a href="../reducer/index.html"><strong aria-hidden="true">6.</strong> Reducer</a></li><li class="chapter-item expanded "><a href="../validator/index.html"><strong aria-hidden="true">7.</strong> Validation Server</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building/index.html" class="active"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="../generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="../spe.html"><strong aria-hidden="true">4.</strong> SPE</a></li><li class="chapter-item expanded "><a href="../fuse.html"><strong aria-hidden="true">5.</strong> Fuser</a></li><li class="chapter-item expanded "><a href="../reconditioner/index.html"><strong aria-hidden="true">6.</strong> Reconditioner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reconditioner/concretizer.html"><strong aria-hidden="true">6.1.</strong> Concretizer</a></li></ol></li><li class="chapter-item expanded "><a href="../harness/index.html"><strong aria-hidden="true">7.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../harness/usage.html"><strong aria-hidden="true">7.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="../harness/configurations.html"><strong aria-hidden="true">7.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="../harness/execution-result.html"><strong aria-hidden="true">7.3.</strong> Execution result</a></li><li class="chapter-item expanded "><a href="../harness/remote-execution.html"><strong aria-hidden="true">7.4.</strong> Remote execution</a></li><li class="chapter-item expanded "><a href="../harness/daemon.html"><strong aria-hidden="true">7.5.</strong> Daemon mode</a></li></ol></li><li class="chapter-item expanded "><a href="../reducer/index.html"><strong aria-hidden="true">8.</strong> Reducer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reducer/auto-reduce.html"><strong aria-hidden="true">8.1.</strong> Auto-reduce</a></li></ol></li><li class="chapter-item expanded "><a href="../validator/index.html"><strong aria-hidden="true">9.</strong> Validation Server</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -189,7 +189,7 @@
 <a class="admonition-anchor-link" href="#admonition-info"></a>
 </div>
 <div>
-<p>Building for Windows is supported by cross compiling from Linux (ideally using <a href="https://docs.microsoft.com/en-us/windows/wsl/">WSL</a>). It shouldn't be too hard to build everything natively on Windows, but you're on your own.</p>
+<p>Building for Windows is <strong>only</strong> supported by cross compiling from Linux (ideally using <a href="https://docs.microsoft.com/en-us/windows/wsl/">WSL</a>).</p>
 </div>
 </div>
 <ul>
@@ -203,30 +203,29 @@
 </li>
 <li><a href="#windows">Windows</a></li>
 <li><a href="#building">Building</a></li>
-<li><a href="#installing">Installing</a></li>
 </ul>
 <h2 id="dawn-prerequisites"><a class="header" href="#dawn-prerequisites">Dawn Prerequisites</a></h2>
 <p>The test harness and program reduction tools depend on <a href="https://dawn.googlesource.com/dawn">dawn</a>, which has a few prerequisites for building. If you don't want to build those tools, you can skip this bit.</p>
 <h3 id="cmake"><a class="header" href="#cmake">CMake</a></h3>
 <p>If you don't already have it, run the following (for Ubuntu):</p>
-<pre><code class="language-sh">$ sudo apt install cmake
+<pre><code class="language-sh">sudo apt install cmake
 </code></pre>
 <p>Otherwise, download it from <a href="https://cmake.org/download/">https://cmake.org/download/</a>.</p>
 <h3 id="depot_tools"><a class="header" href="#depot_tools">depot_tools</a></h3>
 <p>Dawn uses depot_tools to fetch its dependencies. Detailed usage instructions can be found <a href="https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up">here</a>. To install it:</p>
 <pre><code class="language-sh"># Clone the depot_tools repo somewhere on your system
-$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 # Add it to your PATH
-$ export PATH=/path/to/depot_tools:$PATH
+export PATH=/path/to/depot_tools:$PATH
 </code></pre>
 <h3 id="ninja"><a class="header" href="#ninja">Ninja</a></h3>
 <p>On Ubuntu:</p>
-<pre><code class="language-sh">$ sudo apt install ninja-build
+<pre><code class="language-sh">sudo apt install ninja-build
 </code></pre>
 <p>Otherwise, grab the binary from <a href="https://github.com/ninja-build/ninja/releases">https://github.com/ninja-build/ninja/releases</a> and add it your <code>PATH</code>.</p>
 <h3 id="linux-dependencies"><a class="header" href="#linux-dependencies">Linux dependencies</a></h3>
 <p>If you're building for Linux, you might need a few more dependencies. On Ubuntu, you can install the following packages:</p>
-<pre><code class="language-sh">$ sudo apt install libxrandr-dev libxinerama-dev libx11-dev \
+<pre><code class="language-sh">sudo apt install libxrandr-dev libxinerama-dev libx11-dev \
     libxcursor-dev libxi-dev libxext-dev libxcb-shm0-dev libxtst-dev \
     libx11-xcb-dev
 </code></pre>
@@ -234,29 +233,26 @@ $ export PATH=/path/to/depot_tools:$PATH
 <p>If cross-compiling for Windows, you'll also need to follow the instructions <a href="./cross-compiling.html">here</a> to set up the compiler and SDK.</p>
 <h2 id="building"><a class="header" href="#building">Building</a></h2>
 <p>Make sure to clone wgslsmith recursively to fetch the submodules:</p>
-<pre><code class="language-sh">$ git clone --recursive https://github.com/wgslsmith/wgslsmith
-$ cd wgslsmith
+<pre><code class="language-sh">git clone --recursive https://github.com/wgslsmith/wgslsmith
+cd wgslsmith
 </code></pre>
 <p>To build everything, run the following:</p>
-<pre><code class="language-sh">$ ./build.py
+<pre><code class="language-sh">./build.py
 </code></pre>
 <p>This will automatically build dawn, and then build wgslsmith.</p>
 <p>You can also disable some features if you don't want to build dawn and wgpu:</p>
-<pre><code class="language-sh">$ ./build.py --no-reducer --no-harness
+<pre><code class="language-sh">./build.py --no-reducer --no-harness
 </code></pre>
 <p>If cross compiling for Windows, you need to set the target explicitly:</p>
-<pre><code class="language-sh">$ ./build.py --target x86_64-pc-windows-msvc
+<pre><code class="language-sh">./build.py --target x86_64-pc-windows-msvc
 </code></pre>
 <p>It's possible to build the harness as a standalone tool:</p>
-<pre><code class="language-sh">$ ./build.py harness
+<pre><code class="language-sh">./build.py harness
 </code></pre>
 <p>Build output will be in <code>target/release</code> (or <code>cross-target/&lt;target&gt;/release</code> when cross compiling).</p>
-<h2 id="installing"><a class="header" href="#installing">Installing</a></h2>
-<p>To make the <code>wgslsmith</code> command available globally, run the following (after building):</p>
-<pre><code class="language-sh">$ ./build.py install [--install-prefix &lt;path&gt;]
+<p>Compile with ASan and UBSan using these flags:</p>
+<pre><code class="language-sh">./build.py --asan --ubsan
 </code></pre>
-<p>This will create a symlink to <code>target/release/wgslsmith</code>, so you don't need to rerun it every time you rebuild. Use the <code>--install-prefix</code> option to specify the directory to install in (defaults to <code>/usr/local/bin</code>).</p>
-<p>Alternatively you can just put the binary somewhere on your <code>PATH</code>.</p>
 
                     </main>
 

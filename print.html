@@ -90,7 +90,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="reconditioner/index.html"><strong aria-hidden="true">4.</strong> Reconditioner</a></li><li class="chapter-item expanded "><a href="harness/index.html"><strong aria-hidden="true">5.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="harness/usage.html"><strong aria-hidden="true">5.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="harness/configurations.html"><strong aria-hidden="true">5.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="harness/exit-codes.html"><strong aria-hidden="true">5.3.</strong> Exit codes</a></li><li class="chapter-item expanded "><a href="harness/remote-execution.html"><strong aria-hidden="true">5.4.</strong> Remote execution</a></li></ol></li><li class="chapter-item expanded "><a href="reducer/index.html"><strong aria-hidden="true">6.</strong> Reducer</a></li><li class="chapter-item expanded "><a href="validator/index.html"><strong aria-hidden="true">7.</strong> Validation Server</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="spe.html"><strong aria-hidden="true">4.</strong> SPE</a></li><li class="chapter-item expanded "><a href="fuse.html"><strong aria-hidden="true">5.</strong> Fuser</a></li><li class="chapter-item expanded "><a href="reconditioner/index.html"><strong aria-hidden="true">6.</strong> Reconditioner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="reconditioner/concretizer.html"><strong aria-hidden="true">6.1.</strong> Concretizer</a></li></ol></li><li class="chapter-item expanded "><a href="harness/index.html"><strong aria-hidden="true">7.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="harness/usage.html"><strong aria-hidden="true">7.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="harness/configurations.html"><strong aria-hidden="true">7.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="harness/execution-result.html"><strong aria-hidden="true">7.3.</strong> Execution result</a></li><li class="chapter-item expanded "><a href="harness/remote-execution.html"><strong aria-hidden="true">7.4.</strong> Remote execution</a></li><li class="chapter-item expanded "><a href="harness/daemon.html"><strong aria-hidden="true">7.5.</strong> Daemon mode</a></li></ol></li><li class="chapter-item expanded "><a href="reducer/index.html"><strong aria-hidden="true">8.</strong> Reducer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="reducer/auto-reduce.html"><strong aria-hidden="true">8.1.</strong> Auto-reduce</a></li></ol></li><li class="chapter-item expanded "><a href="validator/index.html"><strong aria-hidden="true">9.</strong> Validation Server</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -182,27 +182,30 @@
 <p><a href="https://github.com/mandryskowski/wgslsmith-spe/actions/workflows/ci.yml"><img src="https://github.com/mandryskowski/wgslsmith/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
 <a href="https://github.com/mandryskowski/wgslsmith-spe/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/mandryskowski/wgslsmith-spe/badges/validation-percentage.json" alt="Valid Shaders" /></a>
 <a href="https://wgslsmith-spe.github.io"><img src="https://img.shields.io/badge/docs-wgslsmith--spe.github.io-orange" alt="" /></a></p>
-<p><code>wgslsmith-spe</code> provides a set of tools for randomized testing of <a href="https://www.w3.org/TR/WGSL/">WGSL</a> shader compilers, including:</p>
+<p><code>wgslsmith-spe</code> provides a set of tools for randomised testing of <a href="https://www.w3.org/TR/WGSL/">WGSL</a> shader compilers, including:</p>
 <ul>
 <li>a random WGSL shader generator</li>
 <li>a native WGSL harness</li>
 <li>support for test case reduction with Perses</li>
 <li>a Skeletal Program Enumerator and a shader fuser.</li>
 </ul>
-<p>The supported WebGPU implementations are <a href="https://dawn.googlesource.com/dawn">Dawn (Chrome)</a> and <a href="https://github.com/gfx-rs/wgpu">wgpu (Firefox)</a>.</p>
+<p>The harness supports testing the <a href="https://dawn.googlesource.com/dawn">Dawn (Chrome)</a> and <a href="https://github.com/gfx-rs/wgpu">wgpu (Firefox)</a> WebGPU implementations.</p>
 <h2 id="authors"><a class="header" href="#authors">Authors</a></h2>
 <p><code>wgslsmith</code> was developed for <a href="https://github.com/hasali19">@hasali19</a>'s final year project at Imperial College London, and went on to win a prize. The project report is available <a href="https://drive.google.com/file/d/1qDcGQndpl5onKN2UA4CFStDJQBRfpKIm/view?usp=sharing">here</a>.</p>
 <p><code>wgslsmith-spe</code> is a fork for <a href="https://github.com/mandryskowski">@mandryskowski</a>'s final year project at Imperial College London.</p>
 <h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<p>Recent versions of:</p>
 <ul>
-<li><a href="https://rustup.rs/">Rust</a> - Latest stable toolchain</li>
-<li><a href="https://www.python.org/">Python</a> - Any recent version (required by <code>build.py</code>)</li>
+<li><a href="https://rustup.rs/">Rust</a></li>
+<li><a href="https://www.python.org/">Python</a> (if building, required by <code>build.py</code>)</li>
+<li><a href="https://www.java.com/download/manual.jsp">Java</a> (if reducing, required by Perses)</li>
 </ul>
 <p>A more complete list of requirements is available <a href="https://wgslsmith-spe.github.io/building/index.html">here</a>.</p>
 <h2 id="building"><a class="header" href="#building">Building</a></h2>
 <p>If you just want to try this out, grab the latest CI/CD release. File an issue if this doesn't work.</p>
+<p>For Windows testing you might need to put <a href="https://github.com/mandryskowski/DirectXShaderCompiler">DXC</a> dll's in the same folder as wgslsmith.</p>
 <h3 id="full-build"><a class="header" href="#full-build">Full build</a></h3>
-<p>Clone with <code>--recursive</code>.</p>
+<p>Clone with <code>--recursive</code>. Or run <code>git submodule update --init --recursive</code> after cloning.</p>
 <p>Once you manage to set up all dependencies correctly (see <a href="https://wgslsmith-spe.github.io/building/index.html">docs</a>), simply run:</p>
 <pre><code class="language-sh">./build.py
 </code></pre>
@@ -219,14 +222,10 @@
 </code></pre>
 <h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
 <p>All the tools can be used through the <code>wgslsmith</code> command:</p>
-<pre><code class="language-sh"># Do some fuzzing
-./wgslsmith fuzz
-# Recondition a shader
-./wgslsmith recondition /path/to/shader.wgsl
-# Reduce a crash
-./wgslsmith reduce crash path/to/shader.wgsl --config wgpu:dx12:9348 --regex '...'
-# Run a shader
-./wgslsmith run path/to/shader.wgsl
+<pre><code class="language-sh">./wgslsmith fuzz # Do some fuzzing
+./wgslsmith recondition path/to/shader.wgsl # Recondition a shader
+./wgslsmith auto-reduce path/to/shader-folder # Reduce a crash; just follow prompts
+./wgslsmith run path/to/shader.wgsl # Run a shader
 </code></pre>
 <p>Some options can be configured through a config file. Run <code>wgslsmith config</code> to open the default config file in a text editor. You can also specify a custom config file with the <code>--config-file</code> option.</p>
 <pre><code class="language-toml">[harness]
@@ -252,7 +251,7 @@ jar = "/path/to/perses_deploy.jar"
 <a class="admonition-anchor-link" href="building/index.html#admonition-info"></a>
 </div>
 <div>
-<p>Building for Windows is supported by cross compiling from Linux (ideally using <a href="https://docs.microsoft.com/en-us/windows/wsl/">WSL</a>). It shouldn't be too hard to build everything natively on Windows, but you're on your own.</p>
+<p>Building for Windows is <strong>only</strong> supported by cross compiling from Linux (ideally using <a href="https://docs.microsoft.com/en-us/windows/wsl/">WSL</a>).</p>
 </div>
 </div>
 <ul>
@@ -266,30 +265,29 @@ jar = "/path/to/perses_deploy.jar"
 </li>
 <li><a href="building/index.html#windows">Windows</a></li>
 <li><a href="building/index.html#building">Building</a></li>
-<li><a href="building/index.html#installing">Installing</a></li>
 </ul>
 <h2 id="dawn-prerequisites"><a class="header" href="#dawn-prerequisites">Dawn Prerequisites</a></h2>
 <p>The test harness and program reduction tools depend on <a href="https://dawn.googlesource.com/dawn">dawn</a>, which has a few prerequisites for building. If you don't want to build those tools, you can skip this bit.</p>
 <h3 id="cmake"><a class="header" href="#cmake">CMake</a></h3>
 <p>If you don't already have it, run the following (for Ubuntu):</p>
-<pre><code class="language-sh">$ sudo apt install cmake
+<pre><code class="language-sh">sudo apt install cmake
 </code></pre>
 <p>Otherwise, download it from <a href="https://cmake.org/download/">https://cmake.org/download/</a>.</p>
 <h3 id="depot_tools"><a class="header" href="#depot_tools">depot_tools</a></h3>
 <p>Dawn uses depot_tools to fetch its dependencies. Detailed usage instructions can be found <a href="https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up">here</a>. To install it:</p>
 <pre><code class="language-sh"># Clone the depot_tools repo somewhere on your system
-$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 # Add it to your PATH
-$ export PATH=/path/to/depot_tools:$PATH
+export PATH=/path/to/depot_tools:$PATH
 </code></pre>
 <h3 id="ninja"><a class="header" href="#ninja">Ninja</a></h3>
 <p>On Ubuntu:</p>
-<pre><code class="language-sh">$ sudo apt install ninja-build
+<pre><code class="language-sh">sudo apt install ninja-build
 </code></pre>
 <p>Otherwise, grab the binary from <a href="https://github.com/ninja-build/ninja/releases">https://github.com/ninja-build/ninja/releases</a> and add it your <code>PATH</code>.</p>
 <h3 id="linux-dependencies"><a class="header" href="#linux-dependencies">Linux dependencies</a></h3>
 <p>If you're building for Linux, you might need a few more dependencies. On Ubuntu, you can install the following packages:</p>
-<pre><code class="language-sh">$ sudo apt install libxrandr-dev libxinerama-dev libx11-dev \
+<pre><code class="language-sh">sudo apt install libxrandr-dev libxinerama-dev libx11-dev \
     libxcursor-dev libxi-dev libxext-dev libxcb-shm0-dev libxtst-dev \
     libx11-xcb-dev
 </code></pre>
@@ -297,29 +295,26 @@ $ export PATH=/path/to/depot_tools:$PATH
 <p>If cross-compiling for Windows, you'll also need to follow the instructions <a href="building/./cross-compiling.html">here</a> to set up the compiler and SDK.</p>
 <h2 id="building-1"><a class="header" href="#building-1">Building</a></h2>
 <p>Make sure to clone wgslsmith recursively to fetch the submodules:</p>
-<pre><code class="language-sh">$ git clone --recursive https://github.com/wgslsmith/wgslsmith
-$ cd wgslsmith
+<pre><code class="language-sh">git clone --recursive https://github.com/wgslsmith/wgslsmith
+cd wgslsmith
 </code></pre>
 <p>To build everything, run the following:</p>
-<pre><code class="language-sh">$ ./build.py
+<pre><code class="language-sh">./build.py
 </code></pre>
 <p>This will automatically build dawn, and then build wgslsmith.</p>
 <p>You can also disable some features if you don't want to build dawn and wgpu:</p>
-<pre><code class="language-sh">$ ./build.py --no-reducer --no-harness
+<pre><code class="language-sh">./build.py --no-reducer --no-harness
 </code></pre>
 <p>If cross compiling for Windows, you need to set the target explicitly:</p>
-<pre><code class="language-sh">$ ./build.py --target x86_64-pc-windows-msvc
+<pre><code class="language-sh">./build.py --target x86_64-pc-windows-msvc
 </code></pre>
 <p>It's possible to build the harness as a standalone tool:</p>
-<pre><code class="language-sh">$ ./build.py harness
+<pre><code class="language-sh">./build.py harness
 </code></pre>
 <p>Build output will be in <code>target/release</code> (or <code>cross-target/&lt;target&gt;/release</code> when cross compiling).</p>
-<h2 id="installing"><a class="header" href="#installing">Installing</a></h2>
-<p>To make the <code>wgslsmith</code> command available globally, run the following (after building):</p>
-<pre><code class="language-sh">$ ./build.py install [--install-prefix &lt;path&gt;]
+<p>Compile with ASan and UBSan using these flags:</p>
+<pre><code class="language-sh">./build.py --asan --ubsan
 </code></pre>
-<p>This will create a symlink to <code>target/release/wgslsmith</code>, so you don't need to rerun it every time you rebuild. Use the <code>--install-prefix</code> option to specify the directory to install in (defaults to <code>/usr/local/bin</code>).</p>
-<p>Alternatively you can just put the binary somewhere on your <code>PATH</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cross-compiling"><a class="header" href="#cross-compiling">Cross-compiling</a></h1>
 <ul>
 <li><a href="building/cross-compiling.html#windows">Windows</a></li>
@@ -327,13 +322,13 @@ $ cd wgslsmith
 <h2 id="windows-1"><a class="header" href="#windows-1">Windows</a></h2>
 <p>Windows is supported through cross-compilation using llvm's msvc target.</p>
 <p>Add the msvc target to your rust toolchain with rustup:</p>
-<pre><code class="language-sh">$ rustup target add x86_64-pc-windows-msvc
+<pre><code class="language-sh">rustup target add x86_64-pc-windows-msvc
 </code></pre>
 <p>Install the clang and llvm packages (on Ubuntu):</p>
-<pre><code class="language-sh">$ sudo apt install clang-19 clang-tools-19 llvm-19 lld-19
+<pre><code class="language-sh">sudo apt install clang-19 clang-tools-19 llvm-19 lld-19
 </code></pre>
 <p>You'll also need a copy of the Windows SDK headers and libraries. <a href="https://github.com/Jake-Shadle/xwin">xwin</a> is a super handy tool which can be used to download them on Linux. Install it from source or grab a binary from the releases, then run the following:</p>
-<pre><code class="language-sh">$ xwin splat --include-debug-libs --output /path/to/sdk
+<pre><code class="language-sh">xwin splat --include-debug-libs --output /path/to/sdk
 </code></pre>
 <p>The <code>/path/to/sdk</code> can be anywhere on your system where you'd like to download the SDK.</p>
 <p>Also, make sure to set these environment variables:</p>
@@ -343,41 +338,87 @@ export LLVM_NATIVE_TOOLCHAIN="/path/to/llvm"
 export XWIN_CACHE="/path/to/sdk"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generator"><a class="header" href="#generator">Generator</a></h1>
+<ul>
+<li><a href="generator/index.html#stage">Stage</a></li>
+<li><a href="generator/index.html#wgsl-extensions">WGSL extensions</a></li>
+<li><a href="generator/index.html#floating-point-builtins-for-crash-testing">Floating-point builtins for crash testing</a></li>
+<li><a href="generator/index.html#context-aware-generation">Context-aware generation</a></li>
+<li><a href="generator/index.html#pointers">Pointers</a></li>
+</ul>
 <p>The program generator is able to randomly generate WGSL programs using a range of language features.</p>
-<pre><code class="language-sh"># Generate a shader
-$ wgslsmith gen
-# Show help text
-$ wgslsmith gen --help
+<pre><code class="language-sh">./wgslsmith gen # Generate a shader
+./wgslsmith gen --help # Show help text
 </code></pre>
 <p>Note that programs produced by the generator may not always compile (despite being syntactically valid and well-typed). This is because some WGSL compilers implement additional validation such as rejecting obvious infinite loops. wgslsmith uses a technique called reconditioning (see <a href="generator/../reconditioner/index.html">here</a>) to guarantee validity. You can recondition shaders by passing <code>--recondition</code> to the generator, or by invoking the reconditioner separately on the generated shader which allows more control over its behaviour.</p>
 <p>The generator has various options to control the generation process. See the help text for a full list.</p>
-<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
-<div class="admonition-title">
-<div id="admonition-note-title">
-<p>Note</p>
-</div>
-<a class="admonition-anchor-link" href="generator/index.html#admonition-note"></a>
-</div>
-<div>
-<p>The options to control the sizes of functions and statement blocks are currently a rough approximation due to how the generator works. This may be fixed in future.</p>
-</div>
-</div>
+<h2 id="stage"><a class="header" href="#stage">Stage</a></h2>
+<p>By default, the generator outputs compute shaders. Use the <code>--stage</code> option to get vertex or fragment shaders. This of course affects the entrypoint (its return type), but also importantly the builtins that the generator can produce. For example, derivative functions such as <code>dpdx</code> can only be called from fragment shaders.</p>
+<h2 id="wgsl-extensions"><a class="header" href="#wgsl-extensions">WGSL extensions</a></h2>
+<p>Some features of WGSL are hidden behind extensions. The generator currently supports the <code>f16</code> and <code>subgroups</code> extensions.</p>
+<p>By default, the generator uses no extensions, because their availability depends on the device you are testing. You can enable them using the <code>--gen-ext</code> option, for example <code>--gen-ext subgroups</code>.</p>
+<h2 id="floating-point-builtins-for-crash-testing"><a class="header" href="#floating-point-builtins-for-crash-testing">Floating-point builtins for crash testing</a></h2>
+<p>By default, the generator is quite conservative and avoids generating builtins that are likely to produce floating-point errors. This is to ensure that you don't get flooded with false positives when doing differential testing.</p>
+<p>For crash testing, you may allow the generation of these builtins using <code>--unstable-float</code>. The output still needs reconditioning to avoid dynamic errors and concretisation to avoid validation errors. You can also pass <code>--unstable-float</code> to <a href="generator/../reconditioner/index.html">reconditioner</a> to get lighter reconditioning for crash testing.</p>
+<h2 id="context-aware-generation"><a class="header" href="#context-aware-generation">Context-aware generation</a></h2>
+<p>You can seed the generator with symbols (e.g. global variables, functions, structs) of an existing test case using the <code>--context</code> option. The generator will still generate its own symbols if this option is passed. It may be helpful to use this option with test cases from tint/naga test suites, as the generator may not produce some types of symbols, like nested arrays.</p>
+<h2 id="pointers"><a class="header" href="#pointers">Pointers</a></h2>
 <p>Pointers are currently supported as an opt-in feature (since the reconditioner may reject some shaders with invalid pointer operations). To enable them, use the <code>--enable-pointers</code> flag. If reconditioning (with <code>--recondition</code>), you can also pass <code>--skip-pointer-checks</code> to stop it from erroring if the program contains possible invalid pointer operations.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="skeletal-program-enumeration-spe"><a class="header" href="#skeletal-program-enumeration-spe">Skeletal Program Enumeration (SPE)</a></h1>
+<p>Skeletal Program Enumeration (SPE) is a fuzzing technique that takes a skeleton shader and enumerates valid variable assignments for specific "holes" within it.</p>
+<pre><code class="language-sh">./wgslsmith spe --help
+</code></pre>
+<p>The <code>spe</code> command has three main subcommands:</p>
+<ul>
+<li><code>process-dir &lt;DIR&gt;</code>: Scans a directory for WGSL shaders, treating each as a skeleton. It automatically enumerates variants and tests them against the configured WebGPU implementations.</li>
+<li><code>enumerate &lt;SHADER&gt;</code>: Generates and prints (or executes) all valid enumerations for a single WGSL shader. Useful for testing a single skeleton.</li>
+<li><code>fuse &lt;DIR&gt;</code>: Iterates over a directory of shaders, fusing them together (using the <a href="../fuse.html">fuser</a>) to create larger, more complex skeletons, and then tests their permutations.</li>
+</ul>
+<p>When running <code>process-dir</code> or <code>fuse</code>, <code>wgslsmith</code> will execute the enumerated shaders and automatically save any crashes or mismatches it finds, similar to the standard <code>fuzz</code> command. You can disable this using <code>--no-file-log</code>. If you wish to re-use an existing directory, use <code>--append-dir</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="shader-fuser"><a class="header" href="#shader-fuser">Shader Fuser</a></h1>
+<p>The fuser combines two WGSL shaders into a single larger WGSL program. This is useful if you want to obtain one more complex shaders from smaller ones.</p>
+<pre><code class="language-sh">./wgslsmith fuse path/to/a.wgsl path/to/b.wgsl
+</code></pre>
+<p>The tool automatically renames some to avoid name collisions. It typically appends a random hash to the names of structs and global variables. This way, it is straightforward to fuse more than 2 shaders together - you just need to fuse the first two shaders, then the output of that with the third shader, and so on.</p>
+<p>The fuser merges entrypoints from A and B. Return statements are stripped from A and the statement from B are appended to the end of A.</p>
+<p>After you merge some shaders, it might be worth running <a href="./spe.html">SPE</a> on the result to introduce data dependencies between the original shaders.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reconditioner"><a class="header" href="#reconditioner">Reconditioner</a></h1>
 <p>wgslsmith uses a simple technique called reconditioning to remove certain unwanted behaviour from programs (such as out-of-bounds array accesses and infinite loops). This involves a tool called a reconditioner, which validates and transforms shaders to add safety checks around potentially dangerous operations. The advantage of using a separate tool rather than implementing this in the generator is that it enables using off-the-shelf program reduction tools such as C-Reduce and Perses.</p>
 <pre><code class="language-sh"># Recondition a shader
-$ wgslsmith recondition path/to/shader.wgsl
+./wgslsmith recondition path/to/shader.wgsl
 </code></pre>
 <p>The reconditioner can be used to guarantee loop termination, which is important for making sure that programs can be compiled as some compilers reject obvious infinite loops. If you only want to enforce loop terminate without any other runtime checks, pass <code>--enable loop-limiters</code> to the reconditioner.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="concretizer"><a class="header" href="#concretizer">Concretizer</a></h1>
+<p>The WGSL specification allows WGSL compilers to throw a validation error for certain invalid const-expressions. For example, this shader:</p>
+<pre><pre class="playground"><code class="language-rust">@compute @workgroup_size(1)
+fn main() {
+    _ = 5i / 0i;
+}</code></pre></pre>
+<p>results in the following error when compiled with tint:</p>
+<pre><code>Error while parsing WGSL: :4:9 error: integer division by zero is invalid
+    _ = 5i / 0i;
+        ^^^^^^^
+</code></pre>
+<p>This is actually a big problem for shaders produced by our random WGSL generator. There are many cases where the specification allows validation errors, and since our generator produces large shaders with many deeply nested expressions, it is likely that we will hit at least one of them. Without the concretizer, less than 1% of generated shaders pass validation, which is bad since this essentially only tests the frontend of tint/naga and leaves downstream compilers untested.</p>
+<p>The concretizer detects expressions that would fail validation and replaces them with a safe default. For example, for the shader given above, it will output</p>
+<pre><pre class="playground"><code class="language-rust">@compute @workgroup_size(1u)
+fn main() {
+    _ = 5i;
+}</code></pre></pre>
+<p>The <code>recondition</code> command calls the concretizer before performing the reconditioning. This way, after reconditioning, we should always get syntactically and semantically valid shaders that pass validation. However, you can apply only the concretization using <code>concretize</code>.</p>
+<pre><code class="language-sh">./wgslsmith recondition test.wgsl # This will concretize before reconditioning
+./wgslsmith concretize test.wgsl # This will only concretize
+</code></pre>
+<p>We do not concretize <em>every</em> expression that would fail validation, and limit it to the cases where tint/naga actually throw an error. We do this hoping that it will allow us to find more bugs. This also means that as tint/naga improve their validators, our concretizer might fail to protect us from validation errors, which would again cause the problem above.</p>
+<p>Therefore, we must keep maintaining the concretizer to ensure most of the shaders pass validation. We actually test for this in our CI/CD, and if at least 25/100 generated shaders fail validation, we consider it a fail. You can track the status of this using the badge at the top of <code>README.md</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="harness"><a class="header" href="#harness">Harness</a></h1>
 <p>The test harness is used to run shader programs within a WebGPU pipeline. The harness is flexible and can be used for shaders with different inputs and outputs by providing a JSON description of the shader's I/O interface.</p>
 <p>The harness will execute the shaders against multiple WebGPU implementations/configurations and compare the outputs to detect mismatches. It can also run in server mode to enable remote execution on a separate machine.</p>
 <p>Currently, the harness only supports running compute shaders.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="basic-usage"><a class="header" href="#basic-usage">Basic usage</a></h1>
 <p>To execute a shader, run:</p>
-<pre><code class="language-sh">$ wgslsmith run /path/to/shader.wgsl
+<pre><code class="language-sh">./wgslsmith run /path/to/shader.wgsl
 </code></pre>
-<p>You can also supply input data to initialize any unfiform/storage buffers, by writing a json file of the form:</p>
+<p>You can also supply input data to initialize any uniform/storage buffers, by writing a json file of the form:</p>
 <pre><code class="language-json">{
   "{group}:{binding}": [1, 2, 3, ...]
 }
@@ -404,7 +445,7 @@ fn main() {
 <p>The harness will execute the input shader against one or more configurations, and compare the results of the output buffers for each configuration to detect possible miscompilation bugs.</p>
 <p>A configuration is defined as the combination of a WebGPU implementation (such as dawn or wgpu) and a graphics adapter. The graphics adapter is identified by its backend type (D3D12, Metal, Vulkan) and a platform-specific integer identifier for the device.</p>
 <p>Use the <code>list</code> subcommand to get a list of available configurations on your machine.</p>
-<pre><code class="language-sh">$ wgslsmith harness list
+<pre><code class="language-shell">$ ./wgslsmith harness list
 ID             | Adapter Name
 ---------------+------------------------------
 wgpu:vk:9348   | NVIDIA GeForce RTX 3070
@@ -417,7 +458,7 @@ dawn:vk:9348   | NVIDIA GeForce RTX 3070
 <p>On my machine there are three adapters available, corresponding to hardware Vulkan and D3D12 implementations as well as a D3D12 software implementation. The configuration IDs consist of the WebGPU implementation, the backend type, and the PCI ID for the adapter.</p>
 <p>By default, the harness will attempt to find the first available adapter for each combination of WebGPU implementation and backend type. Thus, all configurations above will be selected except for the D3D12 software adapter.</p>
 <p>To specify configurations manually, you can pass them on the command line using the <code>-c</code> option.</p>
-<pre><code class="language-sh">$ wgslsmith run test.wgsl -c wgpu:dx12:140 -c dawn:dx12:140 -c dawn:vk:9348
+<pre><code class="language-shell">$ ./wgslsmith run test.wgsl -c wgpu:dx12:140 -c dawn:dx12:140 -c dawn:vk:9348
 executing wgpu:dx12:140
 outputs:
   0: [2, 0, 0, 0]
@@ -432,14 +473,21 @@ outputs:
 
 ok
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="exit-codes"><a class="header" href="#exit-codes">Exit codes</a></h1>
-<p>Test case reduction tools such as <a href="https://embed.cs.utah.edu/creduce/">c-reduce</a> typically take an <em>interestingness</em> test as input, which returns <code>0</code> for a useful test case or <code>1</code> if the test case should be discarded.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="execution-result"><a class="header" href="#execution-result">Execution result</a></h1>
 <p>The harness can produce two types of errors:</p>
 <ul>
 <li>If the actual shader execution failed, this will manifest as a panic with exit code <code>101</code>.</li>
 <li>If the shader was successfully executed for all configurations but the outputs differ, the program will exit with code <code>1</code>.</li>
 </ul>
-<p>Otherwise, the program exits normally with code <code>0</code>.</p>
+<p>Otherwise, the program exits normally with code <code>0</code>, and the execution is considered benign.</p>
+<h2 id="stdoutstderr-based-failures"><a class="header" href="#stdoutstderr-based-failures">Stdout/stderr-based failures</a></h2>
+<p>Sometimes, you might want to consider an execution a crash if a certain message appears in stdout/stderr. For example, when running with Metal Shader Validation, a shader reading out of bounds could produce an <code>Invalid load at offset</code> message, but will not cause a crash. You can add regexes for messages in stderr using the config file:</p>
+<pre><code class="language-toml">[harness]
+errors = ["Invalid load"]
+</code></pre>
+<p>If the regex matches the stdout/stderr of the execution, the harness returns <code>101</code>.</p>
+<h2 id="reduction"><a class="header" href="#reduction">Reduction</a></h2>
+<p>Test case reduction tools such as <a href="https://embed.cs.utah.edu/creduce/">c-reduce</a> typically take an <em>interestingness</em> test as input, which returns <code>0</code> for a useful test case or <code>1</code> if the test case should be discarded.</p>
 <p>Normally when using this with a reduction tool to find miscompilations, you will want to discard the shader if the harness returns <code>0</code> or <code>101</code>, since execution failure means that the reduction process probably produced an invalid program. Only the exits with <code>1</code> are likely to be interesting.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="remote-execution"><a class="header" href="#remote-execution">Remote execution</a></h1>
 <p>The harness supports remote execution over a TCP connection, to enable running shaders on a separate device such as an Android smartphone or across a VM boundary (e.g. WSL to Windows host). This is done by running the harness as a server, which receives requests to execute a shader against a set of configurations.</p>
@@ -456,11 +504,11 @@ ok
 </div>
 </div>
 <p>Use the <code>serve</code> subcommand to start the server.</p>
-<pre><code class="language-sh">$ wgslsmith harness serve -a 0.0.0.0:1234
+<pre><code class="language-sh">./wgslsmith harness serve -a 0.0.0.0:1234
 </code></pre>
 <p>The <code>remote</code> subcommand can then be used to interact with the server. The command syntax is similar to the normal harness command.</p>
-<pre><code class="language-sh">$ wgslsmith remote 192.168.1.23:1234 list
-$ wgslsmith remote 192.168.1.23:1234 run path/to/shader.wgsl
+<pre><code class="language-sh">./wgslsmith remote 192.168.1.23:1234 list
+./wgslsmith remote 192.168.1.23:1234 run path/to/shader.wgsl
 </code></pre>
 <p>Note that the first argument to <code>remote</code> is the address of the server to connect to. For convenience, wgslsmith allows you to create friendly names for addresses and to set a default address. This is done through a configuration file (open it in your editor by running <code>wgslsmith config</code>).</p>
 <pre><code class="language-toml"># wgslsmith.toml
@@ -473,10 +521,25 @@ address = "192.168.1.23:1234"
 remote = "android-phone" # Set 'android-phone' as the default remote
 </code></pre>
 <p>This will allow you to connect to the remote using:</p>
-<pre><code class="language-sh">$ wgslsmith remote android-phone run shader.wgsl
+<pre><code class="language-sh">./wgslsmith remote android-phone run shader.wgsl
 # or
-$ wgslsmith remote run shader.wgsl
+./wgslsmith remote run shader.wgsl
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="daemon-mode"><a class="header" href="#daemon-mode">Daemon Mode</a></h1>
+<p>On Windows, initializing WebGPU implementations (like Dawn or wgpu) can take a significant amount of time, sometimes adding seconds of overhead to every execution. This drastically slows down fuzzing and reduction.</p>
+<p>To avoid this overhead, the harness can be run in <em>daemon mode</em>. The daemon persists the WebGPU instance and device state in the background and accepts execution requests over TCP.</p>
+<h2 id="using-the-daemon"><a class="header" href="#using-the-daemon">Using the Daemon</a></h2>
+<p>To route execution requests to the daemon, simply pass the <code>--use-daemon</code> flag to the <code>run</code>, <code>fuzz</code>, <code>reduce</code>, or <code>spe</code> commands.</p>
+<pre><code class="language-sh">./wgslsmith run shader.wgsl --use-daemon
+</code></pre>
+<p>If the daemon is not already running, <code>wgslsmith</code> will automatically spawn it invisibly in the background. The daemon will automatically shut down after a period of inactivity (default 5 minutes).</p>
+<p>If the compilation times out, the daemon aborts, and will start again when the next shader runs.</p>
+<p>The daemon logs its stdout and stderr to the tmp directory. It might be worth reviewing these logs periodically to look for anything interesting. Useful commands here are <code>grep</code> to look for specific messages or <code>tail</code> to see the messages that the daemon produced before dying.</p>
+<h2 id="manual-management"><a class="header" href="#manual-management">Manual Management</a></h2>
+<p>You can also start the daemon manually if you want to observe its logs:</p>
+<pre><code class="language-sh">./wgslsmith harness daemon
+</code></pre>
+<p>By default, the daemon listens on <code>127.0.0.1:9000</code>. You can override the port being used with the <code>--daemon-port</code> argument when invoking the client commands.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reducer"><a class="header" href="#reducer">Reducer</a></h1>
 <p>wgslsmith is able to integrate with a number of off-the-shelf program reduction tools to reduce WGSL programs that exhibit compilation crashes or have mismatching output buffers during differential testing. Currently, the following tools are supported:</p>
 <ul>
@@ -491,7 +554,7 @@ jar = "/path/to/perses_deploy.jar"
 </code></pre>
 <p>The other tools can be installed by following their respective documentation.</p>
 <p>To reduce WGSL programs use the <code>reduce</code> command:</p>
-<pre><code class="language-sh">$ wgslsmith reduce --help
+<pre><code class="language-sh">./wgslsmith reduce --help
 </code></pre>
 <div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
 <div class="admonition-title">
@@ -501,7 +564,7 @@ jar = "/path/to/perses_deploy.jar"
 <a class="admonition-anchor-link" href="reducer/index.html#admonition-warning"></a>
 </div>
 <div>
-<p>The reducer can only be run on Linux at the moment (although it can still reduce shaders for all supported platforms). Windows support is tracked in <a href="https://github.com/wgslsmith/wgslsmith/issues/22">#22</a>. To reduce shaders for another platform, use the harness in <a href="reducer/../harness/remote-execution.html">server mode</a> or the validation tools described below.</p>
+<p>The reducer cannot be run on Android. To reduce shaders on it, use the harness in <a href="reducer/../harness/remote-execution.html">server mode</a>.</p>
 </div>
 </div>
 <p>For reducing mismatches, there are no extra required arguments other than the path to the shader and input data. For crashes, wgslsmith supports two approaches described below. In both cases you must provide the <code>--regex &lt;REGEX&gt;</code> option to specify a regex to match against the crash output (e.g. an error code that you're interested in).</p>
@@ -520,6 +583,20 @@ jar = "/path/to/perses_deploy.jar"
 <p>SPIR-V is not yet supported with the validation tools. This is tracked in <a href="https://github.com/wgslsmith/wgslsmith/issues/23">#23</a>.</p>
 </div>
 </div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="auto-reduce"><a class="header" href="#auto-reduce">Auto-Reduce</a></h1>
+<p><code>wgslsmith</code> includes an <code>auto-reduce</code> command that simplifies the process of reducing crashes and mismatches found during fuzzing.</p>
+<pre><code class="language-sh">./wgslsmith auto-reduce path/to/fuzzer/out/dir
+</code></pre>
+<p>The tool recursively scans the provided directory for fuzzer outputs (directories containing <code>info.json</code>, <code>shader.wgsl</code>, etc.). For each output, it will:</p>
+<ol>
+<li>Attempt to reproduce the crash or mismatch live.</li>
+<li>If it's a crash, prompt you for a regex to match the error output (you can leave it blank to skip).</li>
+<li>Find the configuration that reproduces the bug.</li>
+<li>Automatically invoke the reducer (e.g., Perses or C-Reduce) with the correct arguments.</li>
+</ol>
+<p>You can also filter the reduction by bug type using the <code>--filter</code> option:</p>
+<pre><code class="language-sh">./wgslsmith auto-reduce out/ --filter crash
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="validation-server"><a class="header" href="#validation-server">Validation Server</a></h1>
 <ul>
 <li><a href="validator/index.html#overview">Overview</a></li>
@@ -544,7 +621,7 @@ jar = "/path/to/perses_deploy.jar"
 <p>The validation server needs to be compiled for Windows. Following the instructions <a href="validator/../building/cross-compiling.html#windows">here</a> to setup a cross-compilation environment on Linux.</p>
 <h2 id="usage-1"><a class="header" href="#usage-1">Usage</a></h2>
 <p>Start the validation server using the following command. This will compile the server and then build and start a docker container containing wine and the compiler tools.</p>
-<pre><code class="language-sh">$ ./start-validation-server.sh
+<pre><code class="language-sh">./start-validation-server.sh
 </code></pre>
 <p>The default server port is 9123. Add this to your wgslsmith config file (using the <code>wgslsmith config</code> command).</p>
 <pre><code class="language-toml">[validator]

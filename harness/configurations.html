@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="../generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="../reconditioner/index.html"><strong aria-hidden="true">4.</strong> Reconditioner</a></li><li class="chapter-item expanded "><a href="../harness/index.html"><strong aria-hidden="true">5.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../harness/usage.html"><strong aria-hidden="true">5.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="../harness/configurations.html" class="active"><strong aria-hidden="true">5.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="../harness/exit-codes.html"><strong aria-hidden="true">5.3.</strong> Exit codes</a></li><li class="chapter-item expanded "><a href="../harness/remote-execution.html"><strong aria-hidden="true">5.4.</strong> Remote execution</a></li></ol></li><li class="chapter-item expanded "><a href="../reducer/index.html"><strong aria-hidden="true">6.</strong> Reducer</a></li><li class="chapter-item expanded "><a href="../validator/index.html"><strong aria-hidden="true">7.</strong> Validation Server</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="../generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="../spe.html"><strong aria-hidden="true">4.</strong> SPE</a></li><li class="chapter-item expanded "><a href="../fuse.html"><strong aria-hidden="true">5.</strong> Fuser</a></li><li class="chapter-item expanded "><a href="../reconditioner/index.html"><strong aria-hidden="true">6.</strong> Reconditioner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reconditioner/concretizer.html"><strong aria-hidden="true">6.1.</strong> Concretizer</a></li></ol></li><li class="chapter-item expanded "><a href="../harness/index.html"><strong aria-hidden="true">7.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../harness/usage.html"><strong aria-hidden="true">7.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="../harness/configurations.html" class="active"><strong aria-hidden="true">7.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="../harness/execution-result.html"><strong aria-hidden="true">7.3.</strong> Execution result</a></li><li class="chapter-item expanded "><a href="../harness/remote-execution.html"><strong aria-hidden="true">7.4.</strong> Remote execution</a></li><li class="chapter-item expanded "><a href="../harness/daemon.html"><strong aria-hidden="true">7.5.</strong> Daemon mode</a></li></ol></li><li class="chapter-item expanded "><a href="../reducer/index.html"><strong aria-hidden="true">8.</strong> Reducer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reducer/auto-reduce.html"><strong aria-hidden="true">8.1.</strong> Auto-reduce</a></li></ol></li><li class="chapter-item expanded "><a href="../validator/index.html"><strong aria-hidden="true">9.</strong> Validation Server</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -184,7 +184,7 @@
 <p>The harness will execute the input shader against one or more configurations, and compare the results of the output buffers for each configuration to detect possible miscompilation bugs.</p>
 <p>A configuration is defined as the combination of a WebGPU implementation (such as dawn or wgpu) and a graphics adapter. The graphics adapter is identified by its backend type (D3D12, Metal, Vulkan) and a platform-specific integer identifier for the device.</p>
 <p>Use the <code>list</code> subcommand to get a list of available configurations on your machine.</p>
-<pre><code class="language-sh">$ wgslsmith harness list
+<pre><code class="language-shell">$ ./wgslsmith harness list
 ID             | Adapter Name
 ---------------+------------------------------
 wgpu:vk:9348   | NVIDIA GeForce RTX 3070
@@ -197,7 +197,7 @@ dawn:vk:9348   | NVIDIA GeForce RTX 3070
 <p>On my machine there are three adapters available, corresponding to hardware Vulkan and D3D12 implementations as well as a D3D12 software implementation. The configuration IDs consist of the WebGPU implementation, the backend type, and the PCI ID for the adapter.</p>
 <p>By default, the harness will attempt to find the first available adapter for each combination of WebGPU implementation and backend type. Thus, all configurations above will be selected except for the D3D12 software adapter.</p>
 <p>To specify configurations manually, you can pass them on the command line using the <code>-c</code> option.</p>
-<pre><code class="language-sh">$ wgslsmith run test.wgsl -c wgpu:dx12:140 -c dawn:dx12:140 -c dawn:vk:9348
+<pre><code class="language-shell">$ ./wgslsmith run test.wgsl -c wgpu:dx12:140 -c dawn:dx12:140 -c dawn:vk:9348
 executing wgpu:dx12:140
 outputs:
   0: [2, 0, 0, 0]
@@ -221,7 +221,7 @@ ok
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../harness/exit-codes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../harness/execution-result.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -235,7 +235,7 @@ ok
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../harness/exit-codes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../harness/execution-result.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

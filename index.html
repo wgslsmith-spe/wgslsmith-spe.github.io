@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html" class="active"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="reconditioner/index.html"><strong aria-hidden="true">4.</strong> Reconditioner</a></li><li class="chapter-item expanded "><a href="harness/index.html"><strong aria-hidden="true">5.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="harness/usage.html"><strong aria-hidden="true">5.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="harness/configurations.html"><strong aria-hidden="true">5.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="harness/exit-codes.html"><strong aria-hidden="true">5.3.</strong> Exit codes</a></li><li class="chapter-item expanded "><a href="harness/remote-execution.html"><strong aria-hidden="true">5.4.</strong> Remote execution</a></li></ol></li><li class="chapter-item expanded "><a href="reducer/index.html"><strong aria-hidden="true">6.</strong> Reducer</a></li><li class="chapter-item expanded "><a href="validator/index.html"><strong aria-hidden="true">7.</strong> Validation Server</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html" class="active"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="building/index.html"><strong aria-hidden="true">2.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="building/cross-compiling.html"><strong aria-hidden="true">2.1.</strong> Cross-compiling</a></li></ol></li><li class="chapter-item expanded "><a href="generator/index.html"><strong aria-hidden="true">3.</strong> Generator</a></li><li class="chapter-item expanded "><a href="spe.html"><strong aria-hidden="true">4.</strong> SPE</a></li><li class="chapter-item expanded "><a href="fuse.html"><strong aria-hidden="true">5.</strong> Fuser</a></li><li class="chapter-item expanded "><a href="reconditioner/index.html"><strong aria-hidden="true">6.</strong> Reconditioner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="reconditioner/concretizer.html"><strong aria-hidden="true">6.1.</strong> Concretizer</a></li></ol></li><li class="chapter-item expanded "><a href="harness/index.html"><strong aria-hidden="true">7.</strong> Harness</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="harness/usage.html"><strong aria-hidden="true">7.1.</strong> Basic usage</a></li><li class="chapter-item expanded "><a href="harness/configurations.html"><strong aria-hidden="true">7.2.</strong> Configurations</a></li><li class="chapter-item expanded "><a href="harness/execution-result.html"><strong aria-hidden="true">7.3.</strong> Execution result</a></li><li class="chapter-item expanded "><a href="harness/remote-execution.html"><strong aria-hidden="true">7.4.</strong> Remote execution</a></li><li class="chapter-item expanded "><a href="harness/daemon.html"><strong aria-hidden="true">7.5.</strong> Daemon mode</a></li></ol></li><li class="chapter-item expanded "><a href="reducer/index.html"><strong aria-hidden="true">8.</strong> Reducer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="reducer/auto-reduce.html"><strong aria-hidden="true">8.1.</strong> Auto-reduce</a></li></ol></li><li class="chapter-item expanded "><a href="validator/index.html"><strong aria-hidden="true">9.</strong> Validation Server</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -184,27 +184,30 @@
 <p><a href="https://github.com/mandryskowski/wgslsmith-spe/actions/workflows/ci.yml"><img src="https://github.com/mandryskowski/wgslsmith/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
 <a href="https://github.com/mandryskowski/wgslsmith-spe/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/mandryskowski/wgslsmith-spe/badges/validation-percentage.json" alt="Valid Shaders" /></a>
 <a href="https://wgslsmith-spe.github.io"><img src="https://img.shields.io/badge/docs-wgslsmith--spe.github.io-orange" alt="" /></a></p>
-<p><code>wgslsmith-spe</code> provides a set of tools for randomized testing of <a href="https://www.w3.org/TR/WGSL/">WGSL</a> shader compilers, including:</p>
+<p><code>wgslsmith-spe</code> provides a set of tools for randomised testing of <a href="https://www.w3.org/TR/WGSL/">WGSL</a> shader compilers, including:</p>
 <ul>
 <li>a random WGSL shader generator</li>
 <li>a native WGSL harness</li>
 <li>support for test case reduction with Perses</li>
 <li>a Skeletal Program Enumerator and a shader fuser.</li>
 </ul>
-<p>The supported WebGPU implementations are <a href="https://dawn.googlesource.com/dawn">Dawn (Chrome)</a> and <a href="https://github.com/gfx-rs/wgpu">wgpu (Firefox)</a>.</p>
+<p>The harness supports testing the <a href="https://dawn.googlesource.com/dawn">Dawn (Chrome)</a> and <a href="https://github.com/gfx-rs/wgpu">wgpu (Firefox)</a> WebGPU implementations.</p>
 <h2 id="authors"><a class="header" href="#authors">Authors</a></h2>
 <p><code>wgslsmith</code> was developed for <a href="https://github.com/hasali19">@hasali19</a>'s final year project at Imperial College London, and went on to win a prize. The project report is available <a href="https://drive.google.com/file/d/1qDcGQndpl5onKN2UA4CFStDJQBRfpKIm/view?usp=sharing">here</a>.</p>
 <p><code>wgslsmith-spe</code> is a fork for <a href="https://github.com/mandryskowski">@mandryskowski</a>'s final year project at Imperial College London.</p>
 <h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<p>Recent versions of:</p>
 <ul>
-<li><a href="https://rustup.rs/">Rust</a> - Latest stable toolchain</li>
-<li><a href="https://www.python.org/">Python</a> - Any recent version (required by <code>build.py</code>)</li>
+<li><a href="https://rustup.rs/">Rust</a></li>
+<li><a href="https://www.python.org/">Python</a> (if building, required by <code>build.py</code>)</li>
+<li><a href="https://www.java.com/download/manual.jsp">Java</a> (if reducing, required by Perses)</li>
 </ul>
 <p>A more complete list of requirements is available <a href="https://wgslsmith-spe.github.io/building/index.html">here</a>.</p>
 <h2 id="building"><a class="header" href="#building">Building</a></h2>
 <p>If you just want to try this out, grab the latest CI/CD release. File an issue if this doesn't work.</p>
+<p>For Windows testing you might need to put <a href="https://github.com/mandryskowski/DirectXShaderCompiler">DXC</a> dll's in the same folder as wgslsmith.</p>
 <h3 id="full-build"><a class="header" href="#full-build">Full build</a></h3>
-<p>Clone with <code>--recursive</code>.</p>
+<p>Clone with <code>--recursive</code>. Or run <code>git submodule update --init --recursive</code> after cloning.</p>
 <p>Once you manage to set up all dependencies correctly (see <a href="https://wgslsmith-spe.github.io/building/index.html">docs</a>), simply run:</p>
 <pre><code class="language-sh">./build.py
 </code></pre>
@@ -221,14 +224,10 @@
 </code></pre>
 <h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
 <p>All the tools can be used through the <code>wgslsmith</code> command:</p>
-<pre><code class="language-sh"># Do some fuzzing
-./wgslsmith fuzz
-# Recondition a shader
-./wgslsmith recondition /path/to/shader.wgsl
-# Reduce a crash
-./wgslsmith reduce crash path/to/shader.wgsl --config wgpu:dx12:9348 --regex '...'
-# Run a shader
-./wgslsmith run path/to/shader.wgsl
+<pre><code class="language-sh">./wgslsmith fuzz # Do some fuzzing
+./wgslsmith recondition path/to/shader.wgsl # Recondition a shader
+./wgslsmith auto-reduce path/to/shader-folder # Reduce a crash; just follow prompts
+./wgslsmith run path/to/shader.wgsl # Run a shader
 </code></pre>
 <p>Some options can be configured through a config file. Run <code>wgslsmith config</code> to open the default config file in a text editor. You can also specify a custom config file with the <code>--config-file</code> option.</p>
 <pre><code class="language-toml">[harness]
